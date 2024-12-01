@@ -9,7 +9,7 @@ const Form = ({ taskId, onSave }) => {
   // If editing a task, fetch the task details
   useEffect(() => {
     if (taskId) {
-      axios.get(`http://localhost:5001/api/tasks/${taskId}`)
+      axios.get(`https://task-manager-drag-drop.onrender.com/${taskId}`)
         .then(response => {
           const task = response.data;
           setTitle(task.title);
@@ -31,14 +31,14 @@ const Form = ({ taskId, onSave }) => {
     console.log(taskId);
     if (taskId) {
       // Edit task if taskId is provided
-      axios.put(`http://localhost:5001/api/tasks/${taskId}`, taskData)
+      axios.put(`https://task-manager-drag-drop.onrender.com/${taskId}`, taskData)
         .then(response => {
           onSave(response.data); // Update task in the list
         })
         .catch(err => console.error('Error updating task:', err));
     } else {
       // Create new task
-      axios.post(`http://localhost:5001/api/tasks`, taskData)
+      axios.post(`https://task-manager-drag-drop.onrender.com/api/tasks`, taskData)
         .then(response => {
           onSave(response.data); // Add new task to the list
         })

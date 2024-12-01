@@ -47,7 +47,7 @@ const List = ({ onEdit }) => {
   const [editing, setEditing] = useState(false);
 
   useEffect(() => {
-    axios.get(`http://localhost:5001/api/tasks`)
+    axios.get(`https://task-manager-drag-drop.onrender.com/api/tasks`)
       .then(response => setTasks(response.data))
       .catch(err => console.error('Error fetching tasks:', err));
   }, [tasks]);
@@ -81,7 +81,7 @@ const List = ({ onEdit }) => {
 
       // Update the task status on the backend
       axios
-        .put(`http://localhost:5001/api/tasks/${active.id}`, { status: targetStatus })
+        .put(`https://task-manager-drag-drop.onrender.com/api/tasks/${active.id}`, { status: targetStatus })
         .catch((err) => console.error('Error updating task:', err));
     }
 
@@ -99,7 +99,7 @@ const List = ({ onEdit }) => {
   const handleSaveEdit = (taskId) => {
     const taskToUpdate = tasks.find(task => task._id === taskId);
     axios
-      .put(`http://localhost:5001/api/tasks/${taskId}`, taskToUpdate)
+      .put(`https://task-manager-drag-drop.onrender.com/api/tasks/${taskId}`, taskToUpdate)
       .catch((err) => console.error('Error saving task:', err));
   };
 
