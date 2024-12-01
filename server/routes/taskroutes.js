@@ -1,10 +1,15 @@
-import express from 'express';
-import {tasks,findd,editt} from "../controllers/taskk.js";
+// routes/taskRoutes.js
+import express from "express";
+import {tasks,findd,updated} from "../controllers/taskk.js";
 const router = express.Router();
+
 // Create Task
-router.post('/tasks', tasks);
-// Get all tasks
-router.get('/tasks',findd);
-// Edit Task
-router.put('/tasks/:id',editt);
-export default router;
+router.post("/tasks", tasks);
+
+// Get All Tasks
+router.get("/tasks", findd);
+
+// Update Task
+router.put("/tasks/:id",updated);
+
+export default router
