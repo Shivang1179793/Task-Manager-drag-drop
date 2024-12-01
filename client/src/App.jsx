@@ -15,7 +15,7 @@ const App = () => {
   }, []);
 
   const fetchTasks = async () => {
-    const response = await axios.get("http://localhost:5001/api/tasks");
+    const response = await axios.get("https://task-manager-drag-drop.onrender.com/api/tasks");
     setTasks(response.data);
   };
 
@@ -27,7 +27,7 @@ const App = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5001/api/tasks", newTask);
+      const response = await axios.post("https://task-manager-drag-drop.onrender.com/api/tasks", newTask);
       setTasks((prev) => [...prev, response.data]);
       setNewTask({ title: "", description: "", status: "Open" }); // Reset form
     } catch (err) {

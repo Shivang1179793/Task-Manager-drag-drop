@@ -7,7 +7,7 @@ const TaskList = ({ tasks, setTasks }) => {
   const statuses = ["Open", "Work In Progress", "Completed"];
 
   const updateTaskStatus = async (id, status) => {
-    await axios.put(`http://localhost:5001/api/tasks/${id}`, { status });
+    await axios.put(`https://task-manager-drag-drop.onrender.com/api/tasks/${id}`, { status });
     setTasks((prev) =>
       prev.map((task) =>
         task._id === id ? { ...task, status: status } : task
@@ -18,7 +18,7 @@ const TaskList = ({ tasks, setTasks }) => {
   const updateTaskDetails = async (id, updatedTask) => {
     try {
       const response = await axios.put(
-        `http://localhost:5001/api/tasks/${id}`,
+        `https://task-manager-drag-drop.onrender.com/api/tasks/${id}`,
         updatedTask
       );
       const updatedTaskFromServer = response.data;
