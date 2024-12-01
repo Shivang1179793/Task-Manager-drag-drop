@@ -44,7 +44,6 @@ const DroppableColumn = ({ id, children, style }) => {
 const List = ({ onEdit }) => {
   const [tasks, setTasks] = useState([]);
   const [activeTask, setActiveTask] = useState(null);
-  const [editing, setEditing] = useState(false);
 
   useEffect(() => {
     axios.get(`https://task-manager-drag-drop.onrender.com/api/tasks`)
@@ -102,10 +101,6 @@ const List = ({ onEdit }) => {
       .put(`https://task-manager-drag-drop.onrender.com/api/tasks/${taskId}`, taskToUpdate)
       .catch((err) => console.error('Error saving task:', err));
   };
-
-  useEffect(() => {
-    console.log('Component re-rendered due to editing:', editing);
-  }, [editing]);
   return (
     <DndContext
       collisionDetection={closestCenter}
@@ -147,11 +142,9 @@ const List = ({ onEdit }) => {
                 >
                   {/* Editable title */}
                   <input type="text" value={task.title || ''} // Ensure a fallback for undefined
-                    onFocus={() => setEditing((prev) => !prev)}
                     onChange={(e) => handleEditChange(e, task._id, 'title')} style={{ width: '100%', padding: '5px', marginBottom: '5px', border: '1px solid #ddd', borderRadius: '5px' }} />
                   <textarea
                     value={task.description || ''}
-                    onFocus={() => setEditing((prev) => !prev)}
                     onChange={(e) => handleEditChange(e, task._id, 'description')}
                     rows="4"
                     style={{ width: '100%', padding: '5px', marginBottom: '5px', border: '1px solid #ddd', borderRadius: '5px' }}
